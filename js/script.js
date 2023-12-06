@@ -42,4 +42,71 @@ const { name, weight } = bikeMinWeight;
 
 console.log(`La bici che pesa di meno è la ${name} con un peso di ${weight} kg.`);
 
+// SNACK 2
+// Creare un array di oggetti di squadre di calcio.
+// Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti.
+// Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
+// Generare numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti.
+// Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console.
+
+
+// creo l'array di squadre di calcio.
+const teams = [
+    {
+        nameTeam: 'SSC Napoli',
+        points: 0,
+        fouls: 0
+    },
+    {
+        nameTeam: 'FC Inter',
+        points: 0,
+        fouls: 0
+    },
+    {
+        nameTeam: 'AC Milan',
+        points: 0,
+        fouls: 0
+    },
+    {
+        nameTeam: 'AS Roma',
+        points: 0,
+        fouls: 0
+    },
+    {
+        nameTeam: 'SS Lazio',
+        points: 0,
+        fouls: 0
+    }
+];
+
+// creo una funzione che mi genera numeri automatici da 1 a 100
+const generateRandomNumber = () => {
+    randomNumber = Math.floor(Math.random() * 100 + 1);
+    
+    return randomNumber;
+};
+
+// genero numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti.
+teams.forEach((elem) => {
+    elem.points = generateRandomNumber();
+    elem.fouls = generateRandomNumber();
+});
+
+// usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console.
+
+// dichiaro un array vuoto
+const teamsAndFouls = [];
+
+// tramite un forEach vado a riempire l'array vuoto dichiarato precedentemente con solo nome della squadra e falli subiti;
+teams.forEach((elem) => {
+    let {nameTeam, fouls} = elem;
+    teamsAndFouls.push(nameTeam, fouls);
+})
+
+// stampo il nuovo array in console
+console.log(teamsAndFouls)
+
+
+
+
 
