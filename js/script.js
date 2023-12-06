@@ -175,4 +175,23 @@ let newListItems = listItems.map((elem) => {
 
 console.log(newListItems)
 
+/* BONUS 2
+Stampare in pagina oltre che in console! */
+
+// SNACK 1
+document.getElementById('snack1').innerText = `La bici che pesa di meno è la ${name} con un peso di ${weight} kg.`
+
+// SNACK 2
+for (let i=0; i<teamsAndFouls.length; i++){
+    document.getElementById('snack2').innerText += `
+    La squadra ${teamsAndFouls[i]} ha subito ${teamsAndFouls[i+1]} falli`;
+    i++;
+}
+
+// SNACK 3
+newListItems.forEach((elem) => {
+    document.getElementById('snack3').innerText += `
+    Nome del capo: ${elem.name}, ${elem.type} di colore ${elem.color}. Etichetta posizione: ${elem.position}`
+});
+
 
