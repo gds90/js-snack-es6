@@ -1,7 +1,7 @@
-// SNACK 1
-// Creare un array di oggetti:
-// Ogni oggetto descriverà una bici da corsa con le seguenti proprietà: nome e peso.
-// Stampare in console la bici con peso minore utilizzando destructuring e template literal
+/* SNACK 1
+Creare un array di oggetti:
+Ogni oggetto descriverà una bici da corsa con le seguenti proprietà: nome e peso.
+Stampare in console la bici con peso minore utilizzando destructuring e template literal */
 
 // creo l'array delle biciclette con nome e peso
 const bikes = [
@@ -42,12 +42,12 @@ const { name, weight } = bikeMinWeight;
 
 console.log(`La bici che pesa di meno è la ${name} con un peso di ${weight} kg.`);
 
-// SNACK 2
-// Creare un array di oggetti di squadre di calcio.
-// Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti.
-// Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
-// Generare numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti.
-// Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console.
+/* SNACK 2
+Creare un array di oggetti di squadre di calcio.
+Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti.
+Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
+Generare numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti.
+Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console. */
 
 
 // creo l'array di squadre di calcio.
@@ -82,7 +82,7 @@ const teams = [
 // creo una funzione che mi genera numeri automatici da 1 a 100
 const generateRandomNumber = () => {
     randomNumber = Math.floor(Math.random() * 100 + 1);
-    
+
     return randomNumber;
 };
 
@@ -106,7 +106,73 @@ teams.forEach((elem) => {
 // stampo il nuovo array in console
 console.log(teamsAndFouls)
 
+/* BONUS 1: SNACK 3
+Abbiamo questa lista di articoli di moda:
+```
+name        type      color
+Poppy       tshirt    red
+Jumping     occhiali  blue
+CrissCross  scarpe    black
+Jenny       borsa     pink
+```
+Questi articoli sono inseriti in un array di oggetti.
+Dobbiamo attaccare a ognuno un cartellino position con una lettera dell'alfabeto generata casualmente e inserire gli oggetti così modificati in un nuovo array di oggetti. 
+*/
 
+// creo l'array che contiene gli articoli di moda
+const listItems = [
+    {
+        name: 'Poppy',
+        type: 'tshirt',
+        color: 'red'
+    },
+    {
+        name: 'Jumping',
+        type: 'occhiali',
+        color: 'blue'
+    },
+    {
+        name: 'CrissCross',
+        type: 'scarpe',
+        color: 'black'
+    },
+    {
+        name: 'Jenny',
+        type: 'borsa',
+        color: 'pink'
+    }
+];
 
+// creo una funzione che mi genererà una lettera casuale dell'alfabeto
+function randomLetterGenerator(){
+
+    // dichiaro una variabile che mi contiene tutti i caratteri dell'alfabeto
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXTZ"
+
+    // inizializzo una variabile per la lettera che verrà generata
+    let randomLetter = '';
+
+    // mi genero un numero variabile da 1 alla lunghezza totale della variabile alphabet
+    let randomNum = Math.floor(Math.random() * alphabet.length);
+
+    // dichiaro una variabile che mi conterrà la lettera casuale dell'alfabeto in base al numero casuale generato precedentemente
+    randomLetter = alphabet.charAt(randomNum);
+
+    return randomLetter;
+};
+
+// tramite la funzione map, creo un nuovo array con la lista degli articoli e aggiungendo la prioprietà position, il cui valore sarà una lettera casuale generata dalla funzione creata prima
+let newListItems = listItems.map((elem) => {
+    let obj = {
+        name: elem.name,
+        type: elem.type,
+        color: elem.color,
+        position: randomLetterGenerator()
+    };
+
+    return obj;
+});
+
+console.log(newListItems)
 
 
