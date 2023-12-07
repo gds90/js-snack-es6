@@ -30,12 +30,12 @@ const bikes = [
 // dichiaro una variabile a cui associo i valori della prima bici dell'array
 let bikeMinWeight = bikes[0];
 
-// tramite un forEach confronto il peso di tutte le bici con il peso della variabile dichiarata prima; se il peso della bici in oggetto è minore di quello della variabile, quella bici diventerà la bici con peso minore;
+// tramite un forEach confronto il peso di tutte le bici con il peso della variabile dichiarata prima; se il peso della bici in oggetto è minore di quello della variabile, quella bici diventerà la bici con peso minore
 bikes.forEach((elem) => {
     if (elem.weight < bikeMinWeight.weight){
         bikeMinWeight = elem;
     }
-})
+});
 
 // stampo in console la bici con peso minore utilizzando destructuring e template literal
 const { name, weight } = bikeMinWeight;
@@ -86,6 +86,11 @@ const generateRandomNumber = () => {
     return randomNumber;
 };
 
+// formula generale per la funzione numeri random da min a max vista durante la correzione
+/* function generateRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+} */
+
 // genero numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti.
 teams.forEach((elem) => {
     elem.points = generateRandomNumber();
@@ -100,8 +105,14 @@ const teamsAndFouls = [];
 // tramite un forEach vado a riempire l'array vuoto dichiarato precedentemente con solo nome della squadra e falli subiti;
 teams.forEach((elem) => {
     let {nameTeam, fouls} = elem;
-    teamsAndFouls.push(nameTeam, fouls);
-})
+
+    let team = {
+        nameTeam,
+        fouls
+    }
+
+    teamsAndFouls.push(team);
+});
 
 // stampo il nuovo array in console
 console.log(teamsAndFouls)
@@ -147,7 +158,7 @@ const listItems = [
 function randomLetterGenerator(){
 
     // dichiaro una variabile che mi contiene tutti i caratteri dell'alfabeto
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXTZ"
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWYXZ"
 
     // inizializzo una variabile per la lettera che verrà generata
     let randomLetter = '';
@@ -164,9 +175,11 @@ function randomLetterGenerator(){
 // tramite la funzione map, creo un nuovo array con la lista degli articoli e aggiungendo la prioprietà position, il cui valore sarà una lettera casuale generata dalla funzione creata prima
 let newListItems = listItems.map((elem) => {
     let obj = {
-        name: elem.name,
-        type: elem.type,
-        color: elem.color,
+        ...elem,
+        // ...elem significa = prendi tutto quello che c'è nell'array elem =
+            // name: elem.name,
+            // type: elem.type,
+            // color: elem.color,
         position: randomLetterGenerator()
     };
 
@@ -175,18 +188,18 @@ let newListItems = listItems.map((elem) => {
 
 console.log(newListItems)
 
-/* BONUS 2
+/* BONUS 2 
 Stampare in pagina oltre che in console! */
 
 // SNACK 1
 document.getElementById('snack1').innerText = `La bici che pesa di meno è la ${name} con un peso di ${weight} kg.`
 
 // SNACK 2
-for (let i=0; i<teamsAndFouls.length; i++){
+
+teamsAndFouls.forEach((elem) => {
     document.getElementById('snack2').innerText += `
-    La squadra ${teamsAndFouls[i]} ha subito ${teamsAndFouls[i+1]} falli`;
-    i++;
-}
+    La squadra ${elem.nameTeam} ha subito ${elem.fouls} falli`;
+})
 
 // SNACK 3
 newListItems.forEach((elem) => {
